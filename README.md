@@ -8,7 +8,7 @@ We present SpectFlow, a novel deep learning architecture that combines frequency
 
 **Keywords:** Time Series Forecasting, Flow Matching, Frequency Domain, Fourier Transform, Deep Learning
 
-##1. Introduction
+## 1. Introduction
 
 Long-term multivariate time series forecasting remains a challenging problem in machine learning, with applications spanning from financial markets to climate modeling and traffic prediction. Traditional approaches often struggle to capture both short-term fluctuations and long-term trends while maintaining computational efficiency. Recent advances in deep learning have shown promising results, but many methods face limitations in handling extended forecast horizons and complex inter-variate dependencies.
 
@@ -44,7 +44,7 @@ Flow matching represents a recent advancement in generative modeling, providing 
 
 ###3.1 Preliminaries
 
-####3.1.1 The Fourier Transform in the Complex Frequency Domain
+#### 3.1.1 The Fourier Transform in the Complex Frequency Domain
 
 The Fast Fourier Transform (FFT) efficiently computes the Discrete Fourier Transform (DFT), converting discrete-time signals from the time domain to the complex frequency domain. For real-valued signals, the Real FFT (rFFT) maps an input sequence of $N$ real values to $N/2+1$ complex numbers.
 
@@ -56,7 +56,7 @@ where $X(f)$ is the frequency component at frequency $f$, $|X(f)|$ is its amplit
 
 A key property is that time shifts in the signal correspond to linear phase shifts in the frequency domain, while amplitude $|X(f)|$ remains unchanged. This enables modeling both amplitude scaling and phase shifting through complex multiplication.
 
-####3.1.2 Flow Matching
+#### 3.1.2 Flow Matching
 
 Flow matching learns a time-dependent velocity field $u_\theta(x_t, t)$ that transports a simple base distribution $p_0$ into a target data distribution $p_1$ along a continuous path. The dynamics are governed by:
 
@@ -85,25 +85,25 @@ To handle non-zero means, we apply reversible instance normalization (RIN), ensu
 
 ###3.3 Novel Mechanisms of SpectFlow
 
-####3.3.1 Multivariate Spatio-Temporal Processing
+#### 3.3.1 Multivariate Spatio-Temporal Processing
 
 Our model assumes input time series contain $v$ variates with high spatiotemporal correlation. This enables better capture of relationships across multiple correlated variables and leverages dependencies for improved forecasting accuracy.
 
-####3.3.2 Flow Matching in the Frequency Domain
+#### 3.3.2 Flow Matching in the Frequency Domain
 
 A key innovation is applying flow matching in the frequency domain to model velocity fields between consecutive time points. The model learns velocity field $u(x_t, t)$ describing transformation from noise spectrum to target spectrum, enabling efficient transformation and interpolation of frequency components.
 
-####3.3.3 Complex Frequency Linear Interpolation
+#### 3.3.3 Complex Frequency Linear Interpolation
 
 The output length $L_o$ is controlled relative to input $L_i$ by interpolation rate $\eta = L_o / L_i$. Since rFFT maps length-$L$ series to $L/2$ frequency coefficients (after RIN), this rate directly scales the spectrum. A frequency band $[0, f]$ in input maps to $[0, \eta f]$ in output.
 
-####3.3.4 Low-Pass Filter (LPF)
+#### 3.3.4 Low-Pass Filter (LPF)
 
 The LPF reduces complexity by retaining only frequencies below a cutoff frequency (COF), preserving low-frequency structure while discarding high-frequency noise. We adopt a heuristic based on harmonic content, including sufficient harmonics to preserve periodic structure.
 
-###3.4 Architecture Details
+### 3.4 Architecture Details
 
-####3.4.1 Channel-wise Multi-Head Attention
+#### 3.4.1 Channel-wise Multi-Head Attention
 
 ```python
 # Channel attention mechanism
@@ -135,7 +135,7 @@ low_specxy_imag = self.freq_upsampler_real(low_specx_imag) + \
                   self.freq_upsampler_imag(low_specx_real)
 ```
 
-####3.4.3 Flow Head Architecture
+#### 3.4.3 Flow Head Architecture
 
 ```python
 class TimeEmbed(nn.Module):
@@ -150,9 +150,9 @@ class TimeEmbed(nn.Module):
 
 The flow head predicts velocity fields through a simple MLP that combines temporal embeddings with frequency-domain features.
 
-###3.5 Training and Inference
+### 3.5 Training and Inference
 
-####3.5.1 Training Procedure
+#### 3.5.1 Training Procedure
 
 ```
 Algorithm 1: Training SpectFlow with Flow Head
@@ -172,7 +172,7 @@ Hyperparameters: Learning rate η, batch size B, regularization λ_reg
    f. Update parameters via backpropagation
 ```
 
-####3.5.2 Inference Procedure
+#### 3.5.2 Inference Procedure
 
 ```
 Algorithm 2: SpectFlow Inference
@@ -185,7 +185,7 @@ Procedure Infer(Input series x, trained model M):
 6. Return x_final
 ```
 
-###3.6 Loss Function
+### 3.6 Loss Function
 
 The loss function combines several components tailored for forecasting, reconstruction, and flow matching:
 
@@ -200,9 +200,9 @@ where $u_{\text{target}, i} = x_1 - x_0$ is the true velocity between consecutiv
 **Total Loss** with regularization:
 $$\mathcal{L}_{\text{total}} = \lambda_{\text{rec}} \mathcal{L}_{\text{reconstruction}} + \lambda_{\text{flow}} \mathcal{L}_{\text{flow}} + \lambda_{\text{reg}} \sum_{p} \| \theta_p \|^2$$
 
-##4. Experimental Setup
+## 4. Experimental Setup
 
-###4.1 Datasets
+### 4.1 Datasets
 
 We evaluate SpectFlow on several benchmark datasets:
 
@@ -210,7 +210,7 @@ We evaluate SpectFlow on several benchmark datasets:
 - **ETT (Electricity Transforming Temperature)**: Hourly and minute-level datasets
 - **Custom Datasets**: Various domain-specific time series
 
-###4.2 Experimental Configuration
+### 4.2 Experimental Configuration
 
 Based on the training script analysis:
 
@@ -230,7 +230,7 @@ python run_longExp_F.py \
   --batch_size 4
 ```
 
-###4.3 Hyperparameter Optimization
+### 4.3 Hyperparameter Optimization
 
 The implementation includes comprehensive hyperparameter optimization using Optuna:
 
@@ -243,7 +243,7 @@ def objective(trial):
     args.flow_hidden_multiplier = trial.suggest_float('flow_hidden_multiplier', 0.5, 8.0, log=True)
 ```
 
-##Acknowledgments
+## Acknowledgments
 
 *Anonymous submission - acknowledgments omitted for review.*
 
@@ -253,9 +253,9 @@ def objective(trial):
 
 ---
 
-##Appendix
+## Appendix
 
-###A. Implementation Details
+### A. Implementation Details
 
 The complete implementation is available with the following key components:
 
@@ -264,15 +264,15 @@ The complete implementation is available with the following key components:
 3. **Data Processing** (`data_provider/`): Efficient data loading and preprocessing
 4. **Evaluation** (`scripts/`): Experimental configuration and evaluation scripts
 
-###B. Additional Experimental Results
+### B. Additional Experimental Results
 
 [Additional tables and figures would be included here]
 
-###C. Hyperparameter Sensitivity Analysis
+### C. Hyperparameter Sensitivity Analysis
 
 [Detailed analysis of hyperparameter effects would be included here]
 
-###D. Computational Complexity Analysis
+### D. Computational Complexity Analysis
 
 The time complexity of SpectFlow is O(N log N) due to FFT operations, compared to O(N²) for transformer-based approaches, where N is the sequence length.
 
@@ -292,4 +292,5 @@ author={Seyed Mohamad Moghadas and Bruno Cornelis and Adrian Munteanu},
 booktitle={EurIPS 2025 Workshop on Principles of Generative Modeling (PriGM)},
 year={2025},
 url={https://openreview.net/forum?id=u4WTFzVmYs}
-}```
+}
+```
