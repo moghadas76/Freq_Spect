@@ -279,3 +279,17 @@ The time complexity of SpectFlow is O(N log N) due to FFT operations, compared t
 ---
 
 *This anonymous submission presents SpectFlow, a novel frequency-domain flow matching approach for multivariate time series forecasting. The method demonstrates competitive performance while maintaining computational efficiency and providing interpretable frequency-domain representations.*
+
+## Citation
+
+cite by this:
+
+```text
+@inproceedings{
+moghadas2025frqflow,
+title={Fr\`eqFlow: Long-term forecasting using lightweight flow matching},
+author={Seyed Mohamad Moghadas and Bruno Cornelis and Adrian Munteanu},
+booktitle={EurIPS 2025 Workshop on Principles of Generative Modeling (PriGM)},
+year={2025},
+url={https://openreview.net/forum?id=u4WTFzVmYs}
+}```
