@@ -1,6 +1,8 @@
 #SpectFlow: Frequency-Domain Flow Matching for Multivariate Time Series Forecasting
 
-**Anonymous NeurIPS Submission**
+<img width="3460" height="2406" alt="pic1_rev" src="https://github.com/user-attachments/assets/69a83405-ae53-4703-b5be-0047a82447fc" />
+[main_architecture.pdf](https://github.com/user-attachments/files/24073377/main_architecture.pdf)
+
 
 ##Abstract
 
