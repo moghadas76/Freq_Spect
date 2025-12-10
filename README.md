@@ -5,7 +5,7 @@
 <img width="2458" height="1330" alt="Screenshot from 2025-12-10 10-13-09" src="https://github.com/user-attachments/assets/09ada84d-39bf-45ed-9f7c-e542e2dd0a70" />
 
 
-##Abstract
+## Abstract
 
 We present SpectFlow, a novel deep learning architecture that combines frequency-domain interpolation with flow matching for long-term multivariate time series (MTS) forecasting. Our approach leverages the observation that longer time series provide finer frequency resolution, enabling more precise modeling of temporal dependencies. SpectFlow operates by transforming input sequences to the frequency domain via the Real Fast Fourier Transform (rFFT), performing complex-valued linear interpolation to extend the forecast horizon, and applying flow matching to learn velocity fields that capture residual dynamics. The model integrates channel-wise multi-head attention to capture inter-variate correlations and employs reversible instance normalization for stable training. Extensive experiments on multiple datasets demonstrate that SpectFlow achieves competitive performance while maintaining computational efficiency. The frequency-domain approach naturally handles both trend and seasonal components, while the flow matching mechanism refines predictions by modeling complex temporal dynamics.
 
@@ -35,7 +35,7 @@ Recent deep learning approaches for time series forecasting can be broadly categ
 
 Linear models such as DLinear and NLinear have surprisingly demonstrated competitive performance by decomposing time series into trend and seasonal components. FEDformer and Film introduce frequency-domain processing but primarily focus on attention mechanisms rather than flow-based modeling.
 
-###2.2 Frequency-Domain Analysis
+### 2.2 Frequency-Domain Analysis
 
 Frequency-domain approaches leverage the Fast Fourier Transform (FFT) to analyze time series in the spectral domain. The key advantage is that global patterns like trends and seasonality correspond to low-frequency components, while noise and irregularities manifest as high-frequency components. This natural decomposition enables effective filtering and interpolation.
 
@@ -43,9 +43,9 @@ Frequency-domain approaches leverage the Fast Fourier Transform (FFT) to analyze
 
 Flow matching represents a recent advancement in generative modeling, providing a stable alternative to diffusion models. By learning velocity fields that transport between distributions, flow matching enables efficient and controllable generation. Our work represents the first application of these techniques to time series forecasting in the frequency domain.
 
-##3. Methodology
+## 3. Methodology
 
-###3.1 Preliminaries
+### 3.1 Preliminaries
 
 #### 3.1.1 The Fourier Transform in the Complex Frequency Domain
 
