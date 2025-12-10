@@ -1,7 +1,8 @@
 #SpectFlow: Frequency-Domain Flow Matching for Multivariate Time Series Forecasting
 
 <img width="3460" height="2406" alt="pic1_rev" src="https://github.com/user-attachments/assets/69a83405-ae53-4703-b5be-0047a82447fc" />
-[main_architecture.pdf](https://github.com/user-attachments/files/24073377/main_architecture.pdf)
+
+<img width="2458" height="1330" alt="Screenshot from 2025-12-10 10-13-09" src="https://github.com/user-attachments/assets/09ada84d-39bf-45ed-9f7c-e542e2dd0a70" />
 
 
 ##Abstract
