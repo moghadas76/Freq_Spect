@@ -1,4 +1,4 @@
-# SpectFlow: Frequency-Domain Flow Matching for Multivariate Time Series Forecasting
+# FreqFlow: Long-term forecasting using lightweight flow matching
 
 <img width="3460" height="2406" alt="pic1_rev" src="https://github.com/user-attachments/assets/69a83405-ae53-4703-b5be-0047a82447fc" />
 
